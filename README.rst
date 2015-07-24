@@ -12,6 +12,8 @@ For brieviaty, we include only the following particle types:
 - 5 : Blackhole Particles
 - FOFGroups : FOF groups
 
+0 (Gas) and 1(Dark Matter) are not included.
+
 The container format of these files is BigFile_, which was developed for massively parallel IO
 of BlueTides on BlueWaters_. See install_ for installation.
 

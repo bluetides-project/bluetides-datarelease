@@ -3,18 +3,22 @@ BlueTides
 
 Introduction
 ------------
-These files are the BlueTides_ Friend-of-friend (FOF) Catalogue. 
+
+These files are the BlueTides_ Friend-of-friend (FOF) Catalogue.
 
 For brieviaty, we include only the following particle types:
 
 - 4 : Star particles
 - 5 : Blackhole Particles
-- FOFGroups : the FOF groups
+- FOFGroups : FOF groups
 
 The jump table for accessing the corresponding particle attributes are stored in
 
 - :code:`FOFGroups/LengthByType`
 - :code:`FOFGroups/OffsetByType`
+
+Units
+-----
 
 Units are in MP-Gadget internal units : 
 
@@ -31,6 +35,9 @@ Useful Constants in this unit:
 The container format of these files is BigFile_, which was developed for massively parallel IO
 of BlueTides on BlueWaters_.
 
+Install
+-------
+
 To install bigfile, clone the repository and use standard python `setup.py`.
 
 .. code:: bash
@@ -38,9 +45,12 @@ To install bigfile, clone the repository and use standard python `setup.py`.
     git clone https://github.com/rainwoodman/bigfile
     (cd bigfile; python setup.py install --user)
 
-.. caution:: 
+.. WARNING:: 
 
-	bigfile needs Cython and numpy
+	Installing bigfile depends on Cython and numpy.
+
+Example
+-------
 
 .. code:: bash
 
@@ -51,6 +61,8 @@ To install bigfile, clone the repository and use standard python `setup.py`.
 	['BoxSize', 'HubbleParam', 'MassTable', 'NumFOFGroupsTotal', 'NumPartInGroupTotal', 'Omega0', 'OmegaLambda', 'Time']
 	>>> print p037['header'].attrs['Time'][0]
 	0.0666666663633
+	>>> print p037.blocks
+
 	>>> print p037['FOFGroups/Mass'].size
 	5332371
 	>>> print p037['FOFGroups/MassByType'][:1]

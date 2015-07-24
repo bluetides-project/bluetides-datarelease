@@ -52,6 +52,11 @@ To install bigfile, clone the repository and use standard python `setup.py`.
 Example
 -------
 
+Once a bigfile is opened, access it is similar to a numpy structure array, except slicing is always
+required (similar to :code:`pyfits` or :code:`h5py`). In other words, to read from the file, use
+:code:`block[start:end]`, where :code:`start` and :code:`end` are the start and end offsets of the range
+to be read.
+
 .. code:: bash
 
 	python 
@@ -76,4 +81,12 @@ Example
 .. _BlueTides : http://bluetides-project.org
 .. _BigFile : http://github.com/rainwoodman/bigfile
 .. _BlueWaters: http://bluewaters.ncsa.illinois.edu
+
+Issues
+------
+
+There shall be many issues.  Please file a bug report at
+
+	https://github.com/bluetides-project/bluetides-datarelease/issues/new
+
 

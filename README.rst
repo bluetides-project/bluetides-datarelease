@@ -12,28 +12,61 @@ For brieviaty, we include only the following particle types:
 - 5 : Blackhole Particles
 - FOFGroups : FOF groups
 
-The jump table for accessing the corresponding particle attributes are stored in
+The container format of these files is BigFile_, which was developed for massively parallel IO
+of BlueTides on BlueWaters_. See install_ for installation.
 
-- :code:`FOFGroups/LengthByType`
-- :code:`FOFGroups/OffsetByType`
+Redshifts
+---------
+
+Here is a list of included redshift and the file size. The entire directory can be
+mirrored with lftp or curl.
+
+.. include:: summary.txt
+..   :literal:
 
 Units
 -----
 
 Units are in MP-Gadget internal units : 
 
-- Distance : Kpc/h
-- Velocity : a * km/s
-- Mass     : 1e10 Msun/h
+- Distance : :math:`h^{-1}\mathrm{Kpc}`
+- Velocity : :math:`a \cdot \mathrm{km/s}`
+- Mass     : :math:`10^{10} h^{-1} M_\odot`
 
 Useful Constants in this unit:
 
-- G=47003.1
-- H=0.1
-- C=3e5
+- Gravity Constant :math:`G = 47003.1`
+- Hubble Constant  :math:`H = 0.1`
+- Speed of light   :math:`C = 3\times10^5`
 
-The container format of these files is BigFile_, which was developed for massively parallel IO
-of BlueTides on BlueWaters_.
+Columns
+-------
+
+In bigfile a column is represented by a BigBlock. Common blocks are
+
+1. For particles 
+
+.. code::
+
+	4/Mass, 4/Position, 4/Velocity, 
+	5/Mass, 5/Position, 5/Velocity, 
+	4/StarFormationTime, 
+	5/BlackholeMass, 5/BlackholeAccretionRate
+
+2. For FOFGroup
+
+.. code::
+
+	FOFGroups/OffsetByType
+	FOFGroups/LengthByType
+	FOFGroups/MassByType
+	FOFGroups/Mass
+	FOFGroups/StarFormationRate
+	FOFGroups/BlackholeAccretionRate
+	FOFGroups/MassCenterPosition
+	FOFGroups/MassCenterVelocity
+
+.. _install:
 
 Install
 -------
@@ -57,13 +90,17 @@ required (similar to :code:`pyfits` or :code:`h5py`). In other words, to read fr
 :code:`block[start:end]`, where :code:`start` and :code:`end` are the start and end offsets of the range
 to be read.
 
+The jump table for accessing the corresponding particle attributes of a halo are stored in
+:code:`FOFGroups/LengthByType` and :code:`FOFGroups/OffsetByType`.
+
 .. code:: bash
 
 	python 
 	>>> from bigfile import BigFile
 	>>> p037 = BigFile('PIG_037')
 	>>> print p037['header'].attrs.keys
-	['BoxSize', 'HubbleParam', 'MassTable', 'NumFOFGroupsTotal', 'NumPartInGroupTotal', 'Omega0', 'OmegaLambda', 'Time']
+	['BoxSize', 'HubbleParam', 'MassTable', 'NumFOFGroupsTotal', 
+		'NumPartInGroupTotal', 'Omega0', 'OmegaLambda', 'Time']
 	>>> print p037['header'].attrs['Time'][0]
 	0.0666666663633
 	>>> print p037.blocks
@@ -71,8 +108,9 @@ to be read.
 	>>> print p037['FOFGroups/Mass'].size
 	5332371
 	>>> print p037['FOFGroups/MassByType'][:1]
-	[[ 0.96118915  4.94944572  0.          0.          0.00673234  0.        ]]
-	>>> sel = slice(p037['FOFGroups/OffsetByType'][0][4], p037['FOFGroups/LengthByType'][0][4])
+	[[ 0.96118915  4.94944572  0.          0.          0.00673234  0.    ]]
+	>>> sel = slice(p037['FOFGroups/OffsetByType'][0][4], 
+		p037['FOFGroups/LengthByType'][0][4])
 	>>> print p037['4/Mass'][sel].sum()
 	0.00673234
 	>>> print p037['FOFGroups/MassByType'][0][4]

@@ -112,7 +112,7 @@ The jump table for accessing the corresponding particle attributes of a halo are
 	>>> print p037['FOFGroups/MassByType'][:1]
 	[[ 0.96118915  4.94944572  0.          0.          0.00673234  0.    ]]
 	>>> sel = slice(p037['FOFGroups/OffsetByType'][0][4], 
-		p037['FOFGroups/LengthByType'][0][4])
+		p037['FOFGroups/OffsetByType'][0][4] + p037['FOFGroups/LengthByType'][0][4])
 	>>> print p037['4/Mass'][sel].sum()
 	0.00673234
 	>>> print p037['FOFGroups/MassByType'][0][4]

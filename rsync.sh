@@ -6,5 +6,6 @@ rsync \
 --filter='+ /5/***' \
 --filter='+ /header/***' \
 --filter='- /**' \
+--delete \
 -arL warp.hpc1.cs.cmu.edu:/physics2/yfeng1/BWSim/bluetide/$grp/  $grp/
 done

@@ -32,7 +32,7 @@ Units
 Units are in MP-Gadget internal units : 
 
 - Distance : :math:`h^{-1}\mathrm{Kpc}`
-- Velocity : :math:`a \cdot \mathrm{km/s}`
+- Velocity : :math:`a^{-1} \cdot \mathrm{km/s}`
 - Mass     : :math:`10^{10} h^{-1} M_\odot`
 
 Useful Constants in this unit:

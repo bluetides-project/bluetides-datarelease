@@ -22,7 +22,7 @@ sys.stdout.write('%05s  %08s  %09s %011s\n'
 sys.stdout.write('%05s  %08s  %09s %011s\n'
 	% ('=' * 5, '=' * 8, '=' * 9, '=' * 11))
 
-for fn in sorted(glob('PIG_0??')):
+for fn in sorted(glob('PIG_???')):
     try:
         ff = BigFile(fn)
         a = ff['header'].attrs['Time'][0]

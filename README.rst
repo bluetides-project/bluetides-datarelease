@@ -100,10 +100,10 @@ The jump table for accessing the corresponding particle attributes of a halo are
 	python 
 	>>> from bigfile import BigFile
 	>>> p037 = BigFile('PIG_037')
-	>>> print p037['header'].attrs.keys
+	>>> print p037['Header'].attrs.keys
 	['BoxSize', 'HubbleParam', 'MassTable', 'NumFOFGroupsTotal', 
 		'NumPartInGroupTotal', 'Omega0', 'OmegaLambda', 'Time']
-	>>> print p037['header'].attrs['Time'][0]
+	>>> print p037['Header'].attrs['Time'][0]
 	0.0666666663633
 	>>> print p037.blocks
 
